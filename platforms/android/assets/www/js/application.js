@@ -105,10 +105,10 @@ initListFeedPage: function () {
                   $post = $('<div data-role="collapsible" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r" data-iconpos="right">');
                   $post
                      .append($('<h2 class="titleh2">').text(items[i].title))
-                     .append($('<h3>').html('<a href="' + items[i].link + '" target="_blank">' + items[i].title + '</a>')) // Add title
-                     .append($('<p>').html(items[i].content)) // Add description
-                     .append($('<p>').text('auteur: ' + items[i].author))
-                      .append($('<p>').text(timeSince(items[i].publishedDate)))
+
+                     .append($('<p class="text">').html(items[i].content)) // Add description
+                     .append($('<p class="author">').text('auteur: ' + items[i].author))
+                      .append($('<p class="time">').text(timeSince(items[i].publishedDate)))
                      .append(
                         $('<a href="' + items[i].link + '" target="_blank" data-role="button">')
                            .text('ga naar artikel')
