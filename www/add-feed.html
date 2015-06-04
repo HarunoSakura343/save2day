@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Add Feed</title>
+   </head>
+   <body>
+      <div id="add-feed-page" data-role="page" data-title="Add Feed">
+         <header data-role="header">
+            <a href="index.html" data-icon="home" data-iconpos="notext">Home</a>
+            <h1>Voeg een Feed toe</h1>
+         </header>
+         <div data-role="content">
+            <p>
+             Voeg een nieuwe feed toe door simpelweg een naam op te geven voor de feed die je gaat volgen, en de link waarop de rss feed staat
+            </p>
+            <form id="add-feed-form" name="add-feed-form" action="add-feed.html">
+               <div data-role="fieldcontain">
+                  <label for="feed-name">naam voor de feed</label>
+                  <input type="text" id="feed-name" name="feed-name" required="required"/>
+               </div>
+               <div data-role="fieldcontain">
+                  <label for="feed-url">link van de feed</label>
+                  <input type="url" id="feed-url" name="feed-url" required="required"/>
+               </div>
+               <input type="submit" value="voeg feed toe" />
+            </form>
+         </div>
+      </div>
+   </body>
+</html>
