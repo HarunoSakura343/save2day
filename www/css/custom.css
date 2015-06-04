@@ -6,21 +6,22 @@ font-family: 'Roboto-Regular';
 }
 h2{
 color:#000000 !important;
-font-size:16px;
+font-size:130%;
 font-family: 'Roboto-Medium';
+    font-style:normal;
 	
 }
 .author{
     color:#a2a2a2;
-    font-size:12sp;
+    font-size:75%;
     font-family: 'Roboto-Medium';
 }
 .text{
-    font-size:14sp;
+    font-size:90%;
     color:#000000;
     font-family: 'Roboto-Medium';
 }
 .time{
-    font-size:12sp;
+    font-size:75%;
     font-family: 'Roboto-Medium';
 }

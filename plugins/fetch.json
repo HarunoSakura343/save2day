@@ -24,5 +24,21 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-shake": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-shake"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "org.apache.cordova.device-motion": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.device-motion"
+        },
+        "is_top_level": false,
+        "variables": {}
     }
 }
