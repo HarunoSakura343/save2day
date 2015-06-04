@@ -108,7 +108,7 @@ initListFeedPage: function () {
                      .append($('<h3>').html('<a href="' + items[i].link + '" target="_blank">' + items[i].title + '</a>')) // Add title
                      .append($('<p>').html(items[i].content)) // Add description
                      .append($('<p>').text('auteur: ' + items[i].author))
-                      .append($('<p>').text('datum: ' + timeSince(items[i].publishedDate)))
+                      .append($('<p>').text(timeSince(items[i].publishedDate)))
                      .append(
                         $('<a href="' + items[i].link + '" target="_blank" data-role="button">')
                            .text('ga naar artikel')
