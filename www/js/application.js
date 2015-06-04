@@ -105,7 +105,7 @@ initListFeedPage: function () {
                   $post = $('<div data-role="collapsible" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r" data-iconpos="right">');
                   $post
                      .append($('<h2 class="titleh2">').text(items[i].title))
-                     .append($('<h3>').html('<a href="' + items[i].link + '" target="_blank">' + items[i].title + '</a>')) // Add title
+                   
                      .append($('<p>').html(items[i].content)) // Add description
                      .append($('<p>').text('auteur: ' + items[i].author))
                       .append($('<p>').text(timeSince(items[i].publishedDate)))
