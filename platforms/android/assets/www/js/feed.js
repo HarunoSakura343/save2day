@@ -131,3 +131,9 @@ Feed.searchByUrl = function (url) {
 
    return false;
 };
+
+var onShake = function () {
+    navigator.notification.alert('thanks for shaking', function () {
+    }, 'Shake it');
+
+};

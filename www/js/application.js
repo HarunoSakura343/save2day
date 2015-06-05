@@ -84,7 +84,7 @@ initListFeedPage: function () {
                   return;
                }
                var items = data.responseData.feed.entries;
-
+                shake.startWatch(onShake, 30 /*, onError */);
 				
                var $post;
                if (currentEntries === items.length) {
