@@ -32,6 +32,8 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="FadeSplashScreen" value="true" />
     <preference name="fade-splash-screen-duration" value="5" />
+	<preference name="SplashScreen" value="splash" />
+	<preference name="SplashScreenDelay" value="2000" />
 
     <icon src="icon.png" />
     <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
@@ -40,9 +42,9 @@
     <icon gap:density="xhdpi" gap:platform="android" src="res/icon/android/icon-96-xhdpi.png" />
 
     <gap:splash src="splash.png" />
-    <gap:splash gap:density="ldpi" gap:platform="android" src="res/screen/android/screen-ldpi-portrait.png" />
-    <gap:splash gap:density="mdpi" gap:platform="android" src="res/screen/android/screen-mdpi-portrait.png" />
-    <gap:splash gap:density="hdpi" gap:platform="android" src="res/screen/android/screen-hdpi-portrait.png" />
+    <gap:splash gap:density="ldpi" gap:platform="android" src="res/screen/android/res-long-port-ldpi/default.png" />
+    <gap:splash gap:density="mdpi" gap:platform="android" src="res/screen/android/res-long-port-mdpi/default.png" />
+    <gap:splash gap:density="hdpi" gap:platform="android" src="res/screen/android/res-long-port-hdpi/default.png" />
 
     <access origin="*" />
 </widget>

@@ -58,3 +58,13 @@ background:red;
     float:left;
     padding-top:9px;
 }
+.search-title{
+    color:#FBD065;
+    font-size:100%;
+    text-transform: uppercase;
+    margin-bottom:5px;
+    padding:0;
+}
+.yellowhr{
+    background-color: #FBD065; height: 2px; border: 0;
+}

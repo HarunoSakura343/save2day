@@ -16,7 +16,13 @@ var Application = {
             })
             .on('backbutton', function () {
                 $.mobile.changePage('index.html');
-            });
+            })
+        .on('pageinit', '#test-show', function () {
+            var url = this.getAttribute('data-url').replace(/(.*?)url=/g, '');
+            Application.initTestShow(url);
+        });
+
+
         Application.openLinksInApp();
     },
     initAddFeedPage: function () {
@@ -48,7 +54,9 @@ var Application = {
             return false;
         });
     },
+    initTestShow: function () {
 
+    },
 
     initListFeedPage: function () {
         var $feedsList = $('#feeds-list');
@@ -62,6 +70,20 @@ var Application = {
         }
         $feedsList.append(htmlItems).listview('refresh');
     },
+
+    localFeedPage: function () {
+        var $feedsList = $('#feeds-list');
+        var items = Feed.getFeeds();
+        var htmlItems = '';
+
+        $feedsList.empty();
+        items = items.sort(Feed.compare);
+        for (var i = 0; i < items.length; i++) {
+            htmlItems += '<li><a href="show-feed.html?url=' + items[i].url + '">' + items[i].name + '</a></li>';
+        }
+        $feedsList.append(htmlItems).listview('refresh');
+    },
+
     initShowFeedPage: function (url) {
         var step = 20;
         var loadFeed = function () {
@@ -84,7 +106,7 @@ var Application = {
                         return;
                     }
                     var items = data.responseData.feed.entries;
-                    shake.startWatch(onShake, 30 /*, onError */);
+                    shake.startWatch(onShake, 20 /*, onError */);
 
                     var $post;
                     if (currentEntries === items.length) {
@@ -136,12 +158,12 @@ var Application = {
                 $.mobile.changePage('list-feeds.html');
             }, 'Succes');
         });
-      //  if (Application.checkRequirements() === true) {
+        if (Application.checkRequirements() === true) {
             loadFeed();
-      //  } else {
-        //    navigator.notification.alert('momenteel alleen beschikbaar met internetverbinding', function () {
-         //   }, 'foutmelding');
-       // }
+        } else {
+          navigator.notification.alert('momenteel alleen beschikbaar met internetverbinding', function () {
+            }, 'foutmelding');
+        }
     },
 
 

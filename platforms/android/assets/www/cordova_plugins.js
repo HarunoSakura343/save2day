@@ -42,6 +42,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/org.apache.cordova.splashscreen/www/splashscreen.js",
+        "id": "org.apache.cordova.splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.device-motion/www/Acceleration.js",
         "id": "org.apache.cordova.device-motion.Acceleration",
         "clobbers": [
@@ -63,6 +70,7 @@ module.exports.metadata =
     "cordova-plugin-network-information": "1.0.1-dev",
     "cordova-plugin-dialogs": "1.1.1-dev",
     "cordova-plugin-shake": "0.5.1",
+    "org.apache.cordova.splashscreen": "1.0.0",
     "org.apache.cordova.device-motion": "0.2.11"
 }
 // BOTTOM OF METADATA

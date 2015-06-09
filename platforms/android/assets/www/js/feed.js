@@ -1,6 +1,6 @@
 function Feed(name, url) {
     var _db = window.localStorage;
-    var _tableName = 'feed';
+    var _tableName = 'feeds';
 
     this.name = name;
     this.url = url;
@@ -142,14 +142,29 @@ function checkConnection() {
     var networkState = navigator.connection.type;
 
     var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.UNKNOWN] = 'Unknown connection';
     states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.CELL]     = 'Cell generic connection';
-    states[Connection.NONE]     = 'No network connection';
+    states[Connection.WIFI] = 'WiFi connection';
+    states[Connection.CELL_2G] = 'Cell 2G connection';
+    states[Connection.CELL_3G] = 'Cell 3G connection';
+    states[Connection.CELL_4G] = 'Cell 4G connection';
+    states[Connection.CELL] = 'Cell generic connection';
+    states[Connection.NONE] = 'No network connection';
 
-   return('Connection type: ' + states[networkState]);
+    return (states[networkState]);
 }
+function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
+    var feedsArray = [Feednaam[Feednaam, Feedlink, Feedimage]];
+    if (localstorage.getItem('feeds') === null) {
+
+        localstorage.setItem('feeds', feedsArray)
+    }
+    else if (localstorage.getItem('feeds') === null) {
+
+
+    } else {
+
+    }
+
+}
+ 

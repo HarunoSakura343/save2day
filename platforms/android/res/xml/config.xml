@@ -14,6 +14,10 @@
     <feature name="Accelerometer">
         <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
     <allow-intent href="market:*" />
     <name>Save2Day</name>
     <description>
@@ -38,6 +42,8 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="10" />
     <preference name="android-installLocation" value="auto" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="1000" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.media-capture" />
@@ -70,10 +76,10 @@
     <icon gap:platform="webos" src="www/res/icon/webos/icon-64.png" />
     <icon gap:platform="winphone" src="www/res/icon/windows-phone/icon-48.png" />
     <icon gap:platform="winphone" gap:role="background" src="www/res/icon/windows-phone/icon-173-tile.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="www/res/screen/android/screen-ldpi-portrait.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="www/res/screen/android/screen-mdpi-portrait.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="www/res/screen/android/screen-hdpi-portrait.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="www/res/screen/android/screen-xhdpi-portrait.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="www/res/screen/android/res-long-port-ldpi/default.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="www/res/screen/android/res-long-port-mdpi/default.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="www/res/screen/android/res-long-port-hdpi/default.png" />
+    <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="www/res/screen/android/res-long-port-xhdpi/default.png" />
     <gap:splash gap:platform="blackberry" src="www/res/screen/blackberry/screen-225.png" />
     <gap:splash gap:platform="ios" height="480" src="www/res/screen/ios/screen-iphone-portrait.png" width="320" />
     <gap:splash gap:platform="ios" height="960" src="www/res/screen/ios/screen-iphone-portrait-2x.png" width="640" />

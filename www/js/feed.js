@@ -1,6 +1,6 @@
 function Feed(name, url) {
     var _db = window.localStorage;
-    var _tableName = 'feed';
+    var _tableName = 'feeds';
 
     this.name = name;
     this.url = url;
@@ -142,20 +142,37 @@ function checkConnection() {
     var networkState = navigator.connection.type;
 
     var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.UNKNOWN] = 'Unknown connection';
     states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.CELL]     = 'Cell generic connection';
-    states[Connection.NONE]     = 'No network connection';
+    states[Connection.WIFI] = 'WiFi connection';
+    states[Connection.CELL_2G] = 'Cell 2G connection';
+    states[Connection.CELL_3G] = 'Cell 3G connection';
+    states[Connection.CELL_4G] = 'Cell 4G connection';
+    states[Connection.CELL] = 'Cell generic connection';
+    states[Connection.NONE] = 'No network connection';
 
-   return('Connection type: ' + states[networkState]);
+    return (states[networkState]);
 }
-function FeedToevoegen (Feednaam){
-    if(localstorage.getItem('feeds') === null){
-        localstorage.setItem('feeds', )
-        }
-    localStorage.setItem('feed', true);
+function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
+    var feedsobj = {Feednaam: Feednaam, Feedlink: Feedlink, Feedimage: Feedimage};
+
+    if (localstorage.getItem('feeds') === null) {
+        var array = [];
+      array[Feednaam] = feedsobj;
+        console.log(feedsobj);
+        localStorage.setItem('feeds', array);
+    }
+   else {
+        var local = JSON.parse(localStorage.getItem('feeds'));
+        local.push(feedsobj);
+        console.log(feedsobj);
+        localStorage.setItem('feeds', JSON.stringify(local));
+    }
+
+}
+function storeFeed(Feednaam, Feedlink){
+
+    var limit = 25;
+
+
 }

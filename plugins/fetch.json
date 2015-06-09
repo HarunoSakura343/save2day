@@ -40,5 +40,13 @@
         },
         "is_top_level": false,
         "variables": {}
+    },
+    "org.apache.cordova.splashscreen": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.splashscreen"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
