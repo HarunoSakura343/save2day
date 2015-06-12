@@ -11,19 +11,24 @@ var Application = {
                 var url = this.getAttribute('data-url').replace(/(.*?)url=/g, '');
                 Application.initShowFeedPage(url);
             })
-            .on('pageinit',
+
             .on('pageinit', '#aurelio-page', function () {
                 Application.initAurelioPage();
             })
             .on('backbutton', function () {
                 $.mobile.changePage('index.html');
             })
-        .on('pageinit', '#test-show', function () {
-            var url = this.getAttribute('data-url').replace(/(.*?)url=/g, '');
-            Application.initTestShow(url);
-        });
+            .on('pageinit', '#test-show', function () {
+                var url = this.getAttribute('data-url').replace(/(.*?)url=/g, '');
+                Application.initTestShow(url);
+            });
 
-
+$('li p').click(function() {
+  var Feednaam = $(this).data("titel");
+    var Feedlink = $(this).data("link");
+    var image = $(this).data("image");
+    FeedToevoegen(Feednaam, Feedlink, image);
+});
         Application.openLinksInApp();
     },
     initAddFeedPage: function () {
@@ -122,7 +127,10 @@ var Application = {
                         }
 
                         var datumpre = new Date(items[i].publishedDate);
-
+                        var Feednaam = 'nu.nl';
+                        var Feedlink = 'www.nu.nl,';
+                        var feedimage = "img.jpg";
+                        FeedToevoegen(Feednaam, Feedlink, feedimage);
 
                         $post = $('<div data-role="collapsible" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r" data-iconpos="right">');
                         $post
@@ -162,7 +170,7 @@ var Application = {
         if (Application.checkRequirements() === true) {
             loadFeed();
         } else {
-          navigator.notification.alert('momenteel alleen beschikbaar met internetverbinding', function () {
+            navigator.notification.alert('momenteel alleen beschikbaar met internetverbinding', function () {
             }, 'foutmelding');
         }
     },

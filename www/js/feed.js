@@ -153,26 +153,62 @@ function checkConnection() {
 
     return (states[networkState]);
 }
+//function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
+//    var feedsObj = {Feednaam: Feednaam, Feedlink: Feedlink, Feedimage: Feedimage};
+//    var feedarray = [];
+//    if (localStorage.getItem('feeds') === null) {
+//        feedarray[feedsObj.Feednaam] = feedsObj;
+//        localStorage.setItem('feeds', JSON.stringify(array));
+//    }
+//    else {
+//        var local = JSON.parse(localStorage.getItem('feeds'));
+//        console.log(JSON.stringify(local));
+//      // if (local.indexOf(feedsObj) < 0) {
+//        if (!(feedsObj.Feednaam in local)) {
+//           console.log("test");
+//            feedarray[feedsObj.Feednaam] = feedsObj;
+//
+//           //local.push(feedsObj);
+//
+//           localStorage.setItem('feeds', JSON.stringify((local)));
+//         //   var testConsole = JSON.parse(localStorage.getItem('feeds'));
+//         //   console.log(JSON.stringify(testConsole));
+//        //    return
+//        }
+//        //var testConsole = JSON.parse(localStorage.getItem('feeds'));
+//        //console.log(JSON.stringify(testConsole));
+//
+//    }
+//
+//}
 function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
-    var feedsobj = {Feednaam: Feednaam, Feedlink: Feedlink, Feedimage: Feedimage};
+    var feedObj = {Feednaam: Feednaam, Feedlink: Feedlink, Feedimage: Feedimage},
+        feedarray = [],
+        inside = false;
 
-    if (localstorage.getItem('feeds') === null) {
-        var array = [];
-      array[Feednaam] = feedsobj;
-        console.log(feedsobj);
-        localStorage.setItem('feeds', array);
-    }
-   else {
-        var local = JSON.parse(localStorage.getItem('feeds'));
-        local.push(feedsobj);
-        console.log(feedsobj);
-        localStorage.setItem('feeds', JSON.stringify(local));
+    if (localStorage.getItem('feeds') === null) {
+        localStorage.setItem('feeds', JSON.stringify(feedarray));
     }
 
+        feedarray = JSON.parse(localStorage.getItem('feeds'));
+
+    for(var i in feedarray) {
+        if(feedarray[i].Feednaam == feedObj.Feednaam) {
+            feedarray[i] = feedObj;
+            inside = true;
+        }
+    }
+
+    if(!inside) {
+        feedarray.push(feedObj);
+    }
+    localStorage.setItem('feeds', JSON.stringify(feedarray));
+    console.log(JSON.stringify(JSON.parse(localStorage.getItem('feeds'))));
+
 }
-function storeFeed(Feednaam, Feedlink){
-
-    var limit = 25;
-
-
-}
+//function storeFeed(Feednaam, Feedlink) {
+//
+//    var limit = 25;
+//
+//
+//}
