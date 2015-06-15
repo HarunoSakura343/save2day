@@ -181,6 +181,49 @@ function checkConnection() {
 //    }
 //
 //}
+
+
+function storeFeed(Feedlink, Feednaam) {
+
+    var entriesToShow = 2;
+var rssFeedsArray = [],
+    insidefeedsArray = false;
+
+    $.ajax({
+        url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=' + entriesToShow + '&q=' + encodeURI(Feedlink),
+        dataType: 'json',
+        success: function (data) {
+        //   console.log(JSON.stringify(data));
+            if(localStorage.getItem('rssFeeds') === null){
+                localStorage.setItem('rssFeeds', JSON.stringify(rssFeedsArray));
+            }
+console.log(Feedlink);
+            rssFeedsArray = JSON.parse(localStorage.getItem('rssFeeds'));
+
+            for (var i in rssFeedsArray) {
+                console.log(JSON.stringify(rssFeedsArray[i].responseData.feed.feedUrl));
+                if (rssFeedsArray[i].responseData.feed.feedUrl == Feedlink) {
+                    rssFeedsArray[i] = data;
+                    insidefeedsArray = true;
+                }
+            }
+
+            if (!insidefeedsArray) {
+                rssFeedsArray.push(data);
+                console.log(JSON.stringify(data));
+                console.log(JSON.stringify(data.responseData.feed.feedUrl));
+                console.log(JSON.stringify((rssFeedsArray)));
+            }
+            localStorage.setItem('rssFeeds', JSON.stringify(rssFeedsArray));
+           console.log(localStorage.getItem('rssFeeds'));
+        }
+    });
+}
+function retrieveFeed(Feednaam){
+
+   //console.log(JSON.stringify(JSON.parse(localStorage.getItem('rssFeeds'))));
+
+}
 function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
     var feedObj = {Feednaam: Feednaam, Feedlink: Feedlink, Feedimage: Feedimage},
         feedarray = [],
@@ -190,23 +233,20 @@ function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
         localStorage.setItem('feeds', JSON.stringify(feedarray));
     }
 
-        feedarray = JSON.parse(localStorage.getItem('feeds'));
+    feedarray = JSON.parse(localStorage.getItem('feeds'));
 
-    for(var i in feedarray) {
-        if(feedarray[i].Feednaam == feedObj.Feednaam) {
+    for (var i in feedarray) {
+        if (feedarray[i].Feednaam == feedObj.Feednaam) {
             feedarray[i] = feedObj;
             inside = true;
         }
     }
 
-    if(!inside) {
+    if (!inside) {
         feedarray.push(feedObj);
     }
-
     localStorage.setItem('feeds', JSON.stringify(feedarray));
-
     console.log(JSON.stringify(JSON.parse(localStorage.getItem('feeds'))));
-
 }
 //function storeFeed(Feednaam, Feedlink) {
 //

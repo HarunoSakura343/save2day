@@ -28,6 +28,8 @@ $('li p').click(function() {
     var Feedlink = $(this).data("link");
     var image = $(this).data("image");
     FeedToevoegen(Feednaam, Feedlink, image);
+    storeFeed(Feedlink, Feednaam);
+    retrieveFeed(Feednaam);
 });
         Application.openLinksInApp();
     },
