@@ -1,5 +1,4 @@
-cordova.define("cordova-plugin-shake.Shake", function(require, exports, module) { 
-module.exports = (function () {
+cordova.define("cordova-plugin-shake.Shake", function(require, exports, module) { module.exports = (function () {
     "use strict";
     var shake = {};
 

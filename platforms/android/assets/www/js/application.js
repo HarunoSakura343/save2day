@@ -11,6 +11,10 @@ var Application = {
                 var url = this.getAttribute('data-url').replace(/(.*?)url=/g, '');
                 Application.initShowFeedPage(url);
             })
+            .on('pageinit', '#show-rss-page', function () {
+                //   var link = this.getAttribute('data-url').replace(/(.*?)link=/g, '');
+                Application.initShowRSSPage();
+            })
 
             .on('pageinit', '#aurelio-page', function () {
                 Application.initAurelioPage();
@@ -23,15 +27,83 @@ var Application = {
                 Application.initTestShow(url);
             });
 
-$('li p').click(function() {
-  var Feednaam = $(this).data("titel");
-    var Feedlink = $(this).data("link");
-    var image = $(this).data("image");
-    FeedToevoegen(Feednaam, Feedlink, image);
-    storeFeed(Feedlink, Feednaam);
-    retrieveFeed(Feednaam);
-});
+        $('li p').click(function () {
+            var Feednaam = $(this).data("titel");
+            var Feedlink = $(this).data("link");
+            var image = $(this).data("image");
+            //    console.log(checkConnection());
+
+            if (checkConnection() != 'WiFi connection') {
+                navigator.notification.alert('zet je WiFi aan om de rss feed te kunnen laden' + checkConnection(), function () {
+                }, 'Error');
+            }
+            else {
+
+                FeedToevoegen(Feednaam, Feedlink, image);
+                storeFeed(Feedlink, Feednaam);
+                localStorage.setItem('feedopen', Feedlink);
+                var showfeed = retrieveFeed(Feedlink);
+                //    console.log(JSON.stringify(showfeed));
+                $.mobile.changePage('show-rss.html');
+            }
+
+
+            if (showfeed === null) {
+                navigator.notification.alert('er is nog geen feed opgeslagen aangezien er nog geen verbinding met wifi is geweest' + checkConnection(), function () {
+                }, 'Error');
+            } else {
+
+            }
+
+
+        });
         Application.openLinksInApp();
+    },
+    initShowRSSPage: function () {
+        var Feedlink = localStorage.getItem('feedopen');
+        //   console.log(Feedlink);
+        var showfeed = retrieveFeed(Feedlink);
+        //    console.log(JSON.stringify(showfeed));
+
+        var entriesToShow = 0;
+        shake.startWatch(onShake, 20 /*, onError */);
+        var items = showfeed.responseData.feed.entries;
+        $('.show-rss-container').empty();
+        var container = $('.show-rss-container');
+
+        for (var i = entriesToShow; i < items.length; i++) {
+
+            var toAppend = $('<div class="rssfeedrow">');
+            toAppend
+                .append($('<h2 class="titleh2">').text(items[i].title))
+                .append($('<p class="text">').html(items[i].content)) // Add description
+                .append($('<p class="author">').text('auteur: ' + items[i].author))
+                .append($('<p class="time">').text(timeSince(items[i].publishedDate)))
+                .append($('<hr class="line">'));
+
+
+            container.append(toAppend);
+            //    console.log(JSON.stringify(itemskey[keyi].title));
+            //      $('.show-rss-container').append('<div class="rssfeedrow"></div>');
+
+
+            //$('.rssfeedrow').append('<h2 class="titleh2">'+(keyi)+'</h2>');
+            //$('.rssfeedrow').append('<h2 class="titleh2">'+(itemskey[keyi].title)+'</h2>');
+            //$('.rssfeedrow').append('<p class="text">'+(itemskey[keyi].content)+'</p>');
+            //$('.rssfeedrow').append('<p class="author">'+ "auteur"+ (itemskey[keyi].author)+'</p>');
+            //$('.rssfeedrow').append('<p class="time">'+ timeSince(itemskey[keyi].publishedDate)+'</p>');
+            //$('.rssfeedrow').append('<hr class="line">');
+            //appendToThis
+            //    .append($('<h2 class="titleh2">').text(items[i].title))
+            //    .append($('<p class="text">').html(items[i].content)) // Add description
+            //    .append($('<p class="author">').text('auteur: ' + items[i].author))
+            //    .append($('<p class="time">').text(timeSince(items[i].publishedDate)))
+            //    .append($('<hr class="line">'));
+
+
+        }
+
+
     },
     initAddFeedPage: function () {
         $('#add-feed-form').submit(function (event) {
@@ -114,7 +186,7 @@ $('li p').click(function() {
                         return;
                     }
                     var items = data.responseData.feed.entries;
-                    shake.startWatch(onShake, 20 /*, onError */);
+
 
                     var $post;
                     if (currentEntries === items.length) {

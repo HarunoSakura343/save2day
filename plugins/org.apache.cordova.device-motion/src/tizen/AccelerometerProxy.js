@@ -17,9 +17,9 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
-(function(win) {
+(function (win) {
     var cordova = require('cordova'),
         Acceleration = require('org.apache.cordova.device-motion.Acceleration'),
         accelerometerCallback = null;

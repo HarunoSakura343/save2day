@@ -17,7 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 /*global Windows:true */
 
@@ -27,7 +27,9 @@ var isAlertShowing = false;
 var alertStack = [];
 
 // CB-8928: When toStaticHTML is undefined, prompt fails to run
-function _cleanHtml(html) { return html; }
+function _cleanHtml(html) {
+    return html;
+}
 if (typeof toStaticHTML !== 'undefined') {
     _cleanHtml = toStaticHTML;
 }
@@ -36,7 +38,8 @@ if (typeof toStaticHTML !== 'undefined') {
 // simple html-based implementation until it is available
 function createPromptDialog(title, message, buttons, defaultText, callback) {
 
-    var isPhone = cordova.platformId == "windows" && WinJS.Utilities.isPhone;;
+    var isPhone = cordova.platformId == "windows" && WinJS.Utilities.isPhone;
+    ;
 
     var dlgWrap = document.createElement("div");
     dlgWrap.style.position = "absolute";
@@ -64,8 +67,8 @@ function createPromptDialog(title, message, buttons, defaultText, callback) {
 
     // dialog layout template
     dlg.innerHTML = _cleanHtml("<span id='lbl-title' style='font-size: 24pt'></span><br/>" // title
-        + "<span id='lbl-message'></span><br/>" // message
-        + "<input id='prompt-input' style='width: 100%'/><br/>"); // input fields
+    + "<span id='lbl-message'></span><br/>" // message
+    + "<input id='prompt-input' style='width: 100%'/><br/>"); // input fields
 
     dlg.querySelector('#lbl-title').appendChild(document.createTextNode(title));
     dlg.querySelector('#lbl-message').appendChild(document.createTextNode(message));
@@ -77,7 +80,7 @@ function createPromptDialog(title, message, buttons, defaultText, callback) {
             dlgWrap.parentNode.removeChild(dlgWrap);
 
             if (callback) {
-                callback({ input1: value, buttonIndex: idx });
+                callback({input1: value, buttonIndex: idx});
             }
         }
     }
@@ -115,7 +118,7 @@ function createPromptDialog(title, message, buttons, defaultText, callback) {
 }
 
 module.exports = {
-    alert:function(win, loseX, args) {
+    alert: function (win, loseX, args) {
 
         if (isAlertShowing) {
             var later = function () {
@@ -132,7 +135,7 @@ module.exports = {
 
         var md = new Windows.UI.Popups.MessageDialog(message, _title);
         md.commands.append(new Windows.UI.Popups.UICommand(_buttonLabel));
-        md.showAsync().then(function() {
+        md.showAsync().then(function () {
             isAlertShowing = false;
             win && win();
 
@@ -178,7 +181,7 @@ module.exports = {
         }
     },
 
-    confirm:function(win, loseX, args) {
+    confirm: function (win, loseX, args) {
 
         if (isAlertShowing) {
             var later = function () {
@@ -197,11 +200,11 @@ module.exports = {
 
             var md = new Windows.UI.Popups.MessageDialog(message, _title);
 
-            buttons.forEach(function(buttonLabel) {
+            buttons.forEach(function (buttonLabel) {
                 md.commands.append(new Windows.UI.Popups.UICommand(buttonLabel));
             });
 
-            md.showAsync().then(function(res) {
+            md.showAsync().then(function (res) {
                 isAlertShowing = false;
                 var result = res ? buttons.indexOf(res.label) + 1 : 0;
                 win && win(result);
@@ -221,7 +224,7 @@ module.exports = {
         }
     },
 
-    beep:function(winX, loseX, args) {
+    beep: function (winX, loseX, args) {
 
         // set a default args if it is not set
         args = args && args.length ? args : ["1"];
@@ -246,4 +249,4 @@ module.exports = {
     }
 };
 
-require("cordova/exec/proxy").add("Notification",module.exports);
+require("cordova/exec/proxy").add("Notification", module.exports);

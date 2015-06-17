@@ -17,7 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 /*global Windows:true */
 
@@ -72,10 +72,9 @@ function getCurrrentConnectionType() {
 
 module.exports = {
 
-    getConnectionInfo:function(win,fail,args)
-    {
+    getConnectionInfo: function (win, fail, args) {
         var reportConnectionInfoOnce = function () {
-            win(getCurrrentConnectionType(), { keepCallback: true });
+            win(getCurrrentConnectionType(), {keepCallback: true});
         }
 
         // report current connection  type
@@ -85,4 +84,4 @@ module.exports = {
     }
 };
 
-require("cordova/exec/proxy").add("NetworkStatus",module.exports);
+require("cordova/exec/proxy").add("NetworkStatus", module.exports);

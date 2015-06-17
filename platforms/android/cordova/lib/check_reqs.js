@@ -1,33 +1,33 @@
 #!/usr/bin/env node
 
 /*
-       Licensed to the Apache Software Foundation (ASF) under one
-       or more contributor license agreements.  See the NOTICE file
-       distributed with this work for additional information
-       regarding copyright ownership.  The ASF licenses this file
-       to you under the Apache License, Version 2.0 (the
-       "License"); you may not use this file except in compliance
-       with the License.  You may obtain a copy of the License at
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
 
-         http://www.apache.org/licenses/LICENSE-2.0
+ http://www.apache.org/licenses/LICENSE-2.0
 
-       Unless required by applicable law or agreed to in writing,
-       software distributed under the License is distributed on an
-       "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-       KIND, either express or implied.  See the License for the
-       specific language governing permissions and limitations
-       under the License.
-*/
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ */
 
 /* jshint sub:true */
 
 var shelljs = require('shelljs'),
     child_process = require('child_process'),
-    Q     = require('q'),
-    path  = require('path'),
-    fs    = require('fs'),
+    Q = require('q'),
+    path = require('path'),
+    fs = require('fs'),
     which = require('which'),
-    ROOT  = path.join(__dirname, '..', '..');
+    ROOT = path.join(__dirname, '..', '..');
 
 var isWindows = process.platform == 'win32';
 
@@ -42,7 +42,7 @@ function forgivingWhichSync(cmd) {
 
 function tryCommand(cmd, errMsg) {
     var d = Q.defer();
-    child_process.exec(cmd, function(err, stdout, stderr) {
+    child_process.exec(cmd, function (err, stdout, stderr) {
         if (err) d.reject(new Error(errMsg));
         else d.resolve(stdout);
     });
@@ -50,7 +50,7 @@ function tryCommand(cmd, errMsg) {
 }
 
 // Get valid target from framework/project.properties
-module.exports.get_target = function() {
+module.exports.get_target = function () {
     function extractFromFile(filePath) {
         var target = shelljs.grep(/\btarget=/, filePath);
         if (!target) {
@@ -58,6 +58,7 @@ module.exports.get_target = function() {
         }
         return target.split('=')[1].trim();
     }
+
     if (fs.existsSync(path.join(ROOT, 'framework', 'project.properties'))) {
         return extractFromFile(path.join(ROOT, 'framework', 'project.properties'));
     }
@@ -69,26 +70,26 @@ module.exports.get_target = function() {
 };
 
 // Returns a promise. Called only by build and clean commands.
-module.exports.check_ant = function() {
+module.exports.check_ant = function () {
     return tryCommand('ant -version', 'Failed to run "ant -version", make sure you have ant installed and added to your PATH.');
 };
 
 // Returns a promise. Called only by build and clean commands.
-module.exports.check_gradle = function() {
+module.exports.check_gradle = function () {
     var sdkDir = process.env['ANDROID_HOME'];
     var wrapperDir = path.join(sdkDir, 'tools', 'templates', 'gradle', 'wrapper');
     if (!fs.existsSync(wrapperDir)) {
         return Q.reject(new Error('Could not find gradle wrapper within android sdk. Might need to update your Android SDK.\n' +
-            'Looked here: ' + wrapperDir));
+        'Looked here: ' + wrapperDir));
     }
     return Q.when();
 };
 
 // Returns a promise.
-module.exports.check_java = function() {
+module.exports.check_java = function () {
     var javacPath = forgivingWhichSync('javac');
     var hasJavaHome = !!process.env['JAVA_HOME'];
-    return Q().then(function() {
+    return Q().then(function () {
         if (hasJavaHome) {
             // Windows java installer doesn't add javac to PATH, nor set JAVA_HOME (ugh).
             if (!javacPath) {
@@ -99,9 +100,9 @@ module.exports.check_java = function() {
                 // OS X has a command for finding JAVA_HOME.
                 if (fs.existsSync('/usr/libexec/java_home')) {
                     return tryCommand('/usr/libexec/java_home', 'Failed to run: /usr/libexec/java_home')
-                    .then(function(stdout) {
-                        process.env['JAVA_HOME'] = stdout.trim();
-                    });
+                        .then(function (stdout) {
+                            process.env['JAVA_HOME'] = stdout.trim();
+                        });
                 } else {
                     // See if we can derive it from javac's location.
                     // fs.realpathSync is require on Ubuntu, which symplinks from /usr/bin -> JDK
@@ -131,7 +132,7 @@ module.exports.check_java = function() {
                 }
             }
         }
-    }).then(function() {
+    }).then(function () {
         var msg =
             'Failed to run "java -version", make sure that you have a JDK installed.\n' +
             'You can get it from: http://www.oracle.com/technetwork/java/javase/downloads.\n';
@@ -139,24 +140,26 @@ module.exports.check_java = function() {
             msg += 'Your JAVA_HOME is invalid: ' + process.env['JAVA_HOME'] + '\n';
         }
         return tryCommand('java -version', msg)
-        .then(function() {
-            return tryCommand('javac -version', msg);
-        });
+            .then(function () {
+                return tryCommand('javac -version', msg);
+            });
     });
 };
 
 // Returns a promise.
-module.exports.check_android = function() {
-    return Q().then(function() {
+module.exports.check_android = function () {
+    return Q().then(function () {
         var androidCmdPath = forgivingWhichSync('android');
         var adbInPath = !!forgivingWhichSync('adb');
         var hasAndroidHome = !!process.env['ANDROID_HOME'] && fs.existsSync(process.env['ANDROID_HOME']);
+
         function maybeSetAndroidHome(value) {
             if (!hasAndroidHome && fs.existsSync(value)) {
                 hasAndroidHome = true;
                 process.env['ANDROID_HOME'] = value;
             }
         }
+
         if (!hasAndroidHome && !androidCmdPath) {
             if (isWindows) {
                 // Android Studio 1.0 installer
@@ -213,11 +216,11 @@ module.exports.check_android = function() {
     });
 };
 
-module.exports.getAbsoluteAndroidCmd = function() {
+module.exports.getAbsoluteAndroidCmd = function () {
     return forgivingWhichSync('android').replace(/(\s)/g, '\\$1');
 };
 
-module.exports.check_android_target = function(valid_target) {
+module.exports.check_android_target = function (valid_target) {
     // valid_target can look like:
     //   android-19
     //   android-L
@@ -225,25 +228,25 @@ module.exports.check_android_target = function(valid_target) {
     //   Google Inc.:Glass Development Kit Preview:20
     var msg = 'Android SDK not found. Make sure that it is installed. If it is not at the default location, set the ANDROID_HOME environment variable.';
     return tryCommand('android list targets --compact', msg)
-    .then(function(output) {
-        if (output.split('\n').indexOf(valid_target) == -1) {
-            var androidCmd = module.exports.getAbsoluteAndroidCmd();
-            throw new Error('Please install Android target: "' + valid_target + '".\n\n' +
+        .then(function (output) {
+            if (output.split('\n').indexOf(valid_target) == -1) {
+                var androidCmd = module.exports.getAbsoluteAndroidCmd();
+                throw new Error('Please install Android target: "' + valid_target + '".\n\n' +
                 'Hint: Open the SDK manager by running: ' + androidCmd + '\n' +
                 'You will require:\n' +
                 '1. "SDK Platform" for ' + valid_target + '\n' +
                 '2. "Android SDK Platform-tools (latest)\n' +
                 '3. "Android SDK Build-tools" (latest)');
-        }
-    });
+            }
+        });
 };
 
 // Returns a promise.
-module.exports.run = function() {
+module.exports.run = function () {
     return Q.all([this.check_java(), this.check_android()])
-    .then(function() {
-        console.log('ANDROID_HOME=' + process.env['ANDROID_HOME']);
-        console.log('JAVA_HOME=' + process.env['JAVA_HOME']);
-    });
+        .then(function () {
+            console.log('ANDROID_HOME=' + process.env['ANDROID_HOME']);
+            console.log('JAVA_HOME=' + process.env['JAVA_HOME']);
+        });
 };
 

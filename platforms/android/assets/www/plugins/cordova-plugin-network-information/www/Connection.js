@@ -17,20 +17,20 @@ cordova.define("cordova-plugin-network-information.Connection", function(require
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 /**
  * Network status
  */
 module.exports = {
-        UNKNOWN: "unknown",
-        ETHERNET: "ethernet",
-        WIFI: "wifi",
-        CELL_2G: "2g",
-        CELL_3G: "3g",
-        CELL_4G: "4g",
-        CELL:"cellular",
-        NONE: "none"
+    UNKNOWN: "unknown",
+    ETHERNET: "ethernet",
+    WIFI: "wifi",
+    CELL_2G: "2g",
+    CELL_3G: "3g",
+    CELL_4G: "4g",
+    CELL: "cellular",
+    NONE: "none"
 };
 
 });

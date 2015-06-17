@@ -1,70 +1,84 @@
 @charset "utf-8";
 /* CSS Document */
 
-body, html{
-font-family: 'Roboto-Regular';	
+body, html {
+    font-family: 'Roboto-Regular';
 }
-h2{
-color:#000000 !important;
-font-size:130%;
-font-family: 'Roboto-Medium';
-    font-style:normal;
-	
+
+h2 {
+    color: #000000 !important;
+    font-size: 130%;
+    font-family: 'Roboto-Medium';
+    font-style: normal;
+
 }
-.author{
-    color:#a2a2a2;
-    font-size:75%;
+
+.author {
+    color: #a2a2a2;
+    font-size: 75%;
     font-family: 'Roboto-Medium';
 }
-.text{
-    font-size:90%;
-    color:#000000;
+
+.text {
+    font-size: 90%;
+    color: #000000;
     font-family: 'Roboto-Medium';
 }
-.time{
-    font-size:75%;
+
+.time {
+    font-size: 75%;
     font-family: 'Roboto-Medium';
 }
+
 .possible-overview {
-    padding:0;
-    margin:0;
-    width:100%;
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
-.possible-overview li{
+
+.possible-overview li {
     list-style: none;
-    width:100%;
-    padding:0;
-    margin:0;
-    height:50px;
-} /*
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 50px;
+}
+
+/*
 .possible-overview :nth-child(odd){
-    background:blue;
+   background:blue;
 }
 .possible-overview :nth-child(even){
 background:red;
 } */
-.possible-overview li p{
+.possible-overview li p {
     font-family: 'Roboto-Medium';
-    font-size:90%;float:left;
+    font-size: 90%;
+    float: left;
     margin-left: 25px;
     font-weight: bold;
 
 }
-.source-icon{
-    width:32px;
-    height:32px;
-    padding:0;
-    margin:0;
-    float:left;
-    padding-top:9px;
+
+.source-icon {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    margin: 0;
+    float: left;
+    padding-top: 9px;
 }
-.search-title{
-    color:#FBD065;
-    font-size:100%;
+
+.search-title {
+    color: #FBD065;
+    font-size: 100%;
     text-transform: uppercase;
-    margin-bottom:5px;
-    padding:0;
+    margin-bottom: 5px;
+    padding: 0;
 }
-.yellowhr{
-    background-color: #FBD065; height: 2px; border: 0;
+
+.yellowhr {
+    background-color: #FBD065;
+    height: 2px;
+    border: 0;
 }

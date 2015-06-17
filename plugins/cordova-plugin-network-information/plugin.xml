@@ -19,9 +19,9 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-xmlns:android="http://schemas.android.com/apk/res/android"
-           id="cordova-plugin-network-information"
-      version="1.0.1-dev">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-network-information"
+        version="1.0.1-dev">
 
     <name>Network Information</name>
     <description>Cordova Network Information Plugin</description>
@@ -31,18 +31,18 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <issue>https://issues.apache.org/jira/browse/CB/component/12320640</issue>
 
     <js-module src="www/network.js" name="network">
-        <clobbers target="navigator.connection" />
-        <clobbers target="navigator.network.connection" />
+        <clobbers target="navigator.connection"/>
+        <clobbers target="navigator.network.connection"/>
     </js-module>
 
     <js-module src="www/Connection.js" name="Connection">
-        <clobbers target="Connection" />
+        <clobbers target="Connection"/>
     </js-module>
 
     <!-- firefoxos -->
     <platform name="firefoxos">
         <js-module src="src/firefoxos/NetworkProxy.js" name="NetworkProxy">
-            <runs />
+            <runs/>
         </js-module>
     </platform>
 
@@ -55,10 +55,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
         </config-file>
 
-        <source-file src="src/android/NetworkManager.java" target-dir="src/org/apache/cordova/networkinformation" />
+        <source-file src="src/android/NetworkManager.java" target-dir="src/org/apache/cordova/networkinformation"/>
 
     </platform>
 
@@ -67,15 +67,15 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="NetworkStatus">
                 <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager"/>
-            </feature>   
-        </config-file>
-        
-        <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            </feature>
         </config-file>
 
-        <source-file src="src/android/NetworkManager.java" target-dir="src/org/apache/cordova/networkinformation" />
-        
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+        </config-file>
+
+        <source-file src="src/android/NetworkManager.java" target-dir="src/org/apache/cordova/networkinformation"/>
+
     </platform>
 
 
@@ -83,31 +83,31 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <platform name="ubuntu">
         <config-file target="config.xml" parent="/*">
             <feature name="Camera">
-                <param policy_group="connectivity" policy_version="1" />
+                <param policy_group="connectivity" policy_version="1"/>
             </feature>
         </config-file>
-        <header-file src="src/ubuntu/network_information.h" />
-        <source-file src="src/ubuntu/network_information.cpp" />
+        <header-file src="src/ubuntu/network_information.h"/>
+        <source-file src="src/ubuntu/network_information.cpp"/>
     </platform>
 
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
             <feature name="NetworkStatus">
-                <param name="ios-package" value="CDVConnection" />
+                <param name="ios-package" value="CDVConnection"/>
             </feature>
         </config-file>
 
-        <header-file src="src/ios/CDVConnection.h" />
-        <source-file src="src/ios/CDVConnection.m" />
-        <header-file src="src/ios/CDVReachability.h" />
-	    <source-file src="src/ios/CDVReachability.m" />
-	    <framework src="SystemConfiguration.framework" weak="true" />
+        <header-file src="src/ios/CDVConnection.h"/>
+        <source-file src="src/ios/CDVConnection.m"/>
+        <header-file src="src/ios/CDVReachability.h"/>
+        <source-file src="src/ios/CDVReachability.m"/>
+        <framework src="SystemConfiguration.framework" weak="true"/>
     </platform>
 
     <!-- blackberry10 -->
     <platform name="blackberry10">
-        <source-file src="src/blackberry10/index.js" target-dir="NetworkStatus" />
+        <source-file src="src/blackberry10/index.js" target-dir="NetworkStatus"/>
         <config-file target="www/config.xml" parent="/widget">
             <feature name="NetworkStatus" value="NetworkStatus"/>
         </config-file>
@@ -122,10 +122,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         </config-file>
 
         <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
-            <Capability Name="ID_CAP_NETWORKING" />
+            <Capability Name="ID_CAP_NETWORKING"/>
         </config-file>
 
-        <source-file src="src/wp/NetworkStatus.cs" />
+        <source-file src="src/wp/NetworkStatus.cs"/>
     </platform>
 
     <!-- wp8 -->
@@ -137,38 +137,38 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         </config-file>
 
         <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
-            <Capability Name="ID_CAP_NETWORKING" />
+            <Capability Name="ID_CAP_NETWORKING"/>
         </config-file>
 
-        <source-file src="src/wp/NetworkStatus.cs" />
+        <source-file src="src/wp/NetworkStatus.cs"/>
     </platform>
 
     <!-- windows8 -->
     <platform name="windows8">
         <js-module src="src/windows/NetworkInfoProxy.js" name="NetworkInfoProxy">
-            <merges target="" />
+            <merges target=""/>
         </js-module>
     </platform>
 
     <!-- windows -->
     <platform name="windows">
         <js-module src="src/windows/NetworkInfoProxy.js" name="NetworkInfoProxy">
-            <merges target="" />
+            <merges target=""/>
         </js-module>
     </platform>
 
     <!-- tizen -->
     <platform name="tizen">
         <js-module src="src/tizen/NetworkProxy.js" name="NetworkProxy">
-            <runs />
+            <runs/>
         </js-module>
     </platform>
 
     <!-- browser -->
     <platform name="browser">
         <js-module src="www/browser/network.js" name="browserNetwork">
-            <clobbers target="navigator.connection" />
-            <clobbers target="navigator.network.connection" />
+            <clobbers target="navigator.connection"/>
+            <clobbers target="navigator.network.connection"/>
         </js-module>
     </platform>
 </plugin>

@@ -1,63 +1,162 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <title> Feed Reader</title>
-       <link rel="stylesheet" href="css/fonts.css"/>
-      <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
-       <link rel="stylesheet" href="css/custom.css"/>
-      <script src="js/jquery-1.11.1.min.js"></script>
-      <script src="js/jquery.mobile-1.4.5.min.js"></script>
-      <script src="cordova.js"></script>
-      <script src="js/feed.js"></script>
-      <script src="js/application.js"></script>
-      <script>
-         $(document)
-                 .on('pagebeforecreate', Application.updateIcons)
-                 .one('deviceready', Application.initApplication);
-      </script>
-    
-   </head>
-   <body>
-      <div data-role="page">
-         <header data-role="header" data-back-btn="true">
-            <h1>Save2Day</h1>
-         </header>
-         <div data-role="content">
+    <title> Feed Reader</title>
+    <link rel="stylesheet" href="css/fonts.css"/>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/feed.js"></script>
+    <script src="js/application.js"></script>
+    <script>
+        $(document)
+                .on('pagebeforecreate', Application.updateIcons)
+                .one('deviceready', Application.initApplication);
+    </script>
 
-            <!--<a href="add-feed.html" data-role="button">voeg een feed toe</a>-->
-            <!--<a href="list-feeds.html" data-role="button">bekijk de lijst met feeds</a>-->
+</head>
+<body>
+<div data-role="page">
+    <header data-role="header" data-back-btn="true">
+        <h1>Save2Day</h1>
+    </header>
+    <div data-role="content">
 
-             <h1 class="search-title">Populair nieuws</h1>
-             <hr class="yellowhr">
-             <ul class="possible-overview">
-                 <li> <img  class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://tweakers.mobi/rss/nieuws" data-titel="Tweakers Nieuws" data-image="">Tweakers Nieuws</p><div class="state"></div><div class="clear"></div></li>
-                 <li><img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://tweakers.mobi/rss/reviews" data-titel="Tweakers Reviews" data-image="">tweakers Reviews</p><div class="state"></div><div class="clear"></div></li>
-                 <li><img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://www.nu.nl/rss/Algemeen" data-titel="Nu - Algemeen" data-image="">Nu - Algemeen</p><div class="state"></div><div class="clear"></div></li>
-                 <li> <img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://www.nu.nl/rss/Wetenschap" data-titel="Nu - Wetenschap" data-image="">Nu - Wetenschap</p><div class="state"></div><div class="clear"></div></li>
-                 <li> <img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://www.nu.nl/rss/Games" data-titel="Nu - Games" data-image="">Nu - Games</p><div class="state"></div><div class="clear"></div></li>
-             </ul>
-             <h1 class="search-title">populaire blogs</h1>
-             <hr class="yellowhr">
-             <ul class="possible-overview">
-                 <li> <img  class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://tweakers.mobi/rss/nieuws" data-titel="Tweakers Nieuws" data-image="">Tweakers Nieuws</p><div class="state"></div><div class="clear"></div></li>
-                 <li><img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://tweakers.mobi/rss/reviews" data-titel="Tweakers Reviews" data-image="">tweakers Reviews</p><div class="state"></div><div class="clear"></div></li>
-                 <li><img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://www.nu.nl/rss/Algemeen" data-titel="Nu - Algemeen" data-image="">Nu - Algemeen</p><div class="state"></div><div class="clear"></div></li>
-                 <li> <img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://www.nu.nl/rss/Wetenschap" data-titel="Nu - Wetenschap" data-image="">Nu - Wetenschap</p><div class="state"></div><div class="clear"></div></li>
-                 <li> <img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://www.nu.nl/rss/Games" data-titel="Nu - Games" data-image="">Nu - Games</p><div class="state"></div><div class="clear"></div></li>
-             </ul>
-             <h1 class="search-title">categoriëen</h1>
-             <hr class="yellowhr">
-             <ul class="possible-overview">
-                 <li> <img  class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://tweakers.mobi/rss/nieuws" data-titel="Tweakers Nieuws" data-image="">Tweakers Nieuws</p><div class="state"></div><div class="clear"></div></li>
-                 <li><img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://tweakers.mobi/rss/reviews" data-titel="Tweakers Reviews" data-image="">tweakers Reviews</p><div class="state"></div><div class="clear"></div></li>
-                 <li><img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://www.nu.nl/rss/Algemeen" data-titel="Nu - Algemeen" data-image="">Nu - Algemeen</p><div class="state"></div><div class="clear"></div></li>
-                 <li> <img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://www.nu.nl/rss/Wetenschap" data-titel="Nu - Wetenschap" data-image="">Nu - Wetenschap</p><div class="state"></div><div class="clear"></div></li>
-                 <li> <img class="source-icon" src="img/logo%20nutech.png" /><p data-link="http://www.nu.nl/rss/Games" data-titel="Nu - Games" data-image="">Nu - Games</p><div class="state"></div><div class="clear"></div></li>
-             </ul>
-         </div>
-      </div>
-   </body>
+        <!--<a href="add-feed.html" data-role="button">voeg een feed toe</a>-->
+        <!--<a href="list-feeds.html" data-role="button">bekijk de lijst met feeds</a>-->
+
+        <h1 class="search-title">Populair nieuws</h1>
+        <hr class="yellowhr">
+        <ul class="possible-overview">
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://tweakers.mobi/rss/nieuws" data-titel="Tweakers Nieuws" data-image="">Tweakers
+                    Nieuws</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://tweakers.mobi/rss/reviews" data-titel="Tweakers Reviews" data-image="">tweakers
+                    Reviews</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://www.nu.nl/rss/Algemeen" data-titel="Nu - Algemeen" data-image="">Nu - Algemeen</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://www.nu.nl/rss/Wetenschap" data-titel="Nu - Wetenschap" data-image="">Nu -
+                    Wetenschap</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://www.nu.nl/rss/games" data-titel="Nu - Games" data-image="">Nu - Games</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+        <h1 class="search-title">populaire blogs</h1>
+        <hr class="yellowhr">
+        <ul class="possible-overview">
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://tweakers.mobi/rss/nieuws" data-titel="Tweakers Nieuws" data-image="">Tweakers
+                    Nieuws</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://tweakers.mobi/rss/reviews" data-titel="Tweakers Reviews" data-image="">tweakers
+                    Reviews</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://www.nu.nl/rss/Algemeen" data-titel="Nu - Algemeen" data-image="">Nu - Algemeen</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://www.nu.nl/rss/Wetenschap" data-titel="Nu - Wetenschap" data-image="">Nu -
+                    Wetenschap</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://www.nu.nl/rss/games" data-titel="Nu - Games" data-image="">Nu - Games</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+        <h1 class="search-title">categoriëen</h1>
+        <hr class="yellowhr">
+        <ul class="possible-overview">
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://tweakers.mobi/rss/nieuws" data-titel="Tweakers Nieuws" data-image="">Tweakers
+                    Nieuws</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://tweakers.mobi/rss/reviews" data-titel="Tweakers Reviews" data-image="">tweakers
+                    Reviews</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://www.nu.nl/rss/Algemeen" data-titel="Nu - Algemeen" data-image="">Nu - Algemeen</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://www.nu.nl/rss/Wetenschap" data-titel="Nu - Wetenschap" data-image="">Nu -
+                    Wetenschap</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+            <li><img class="source-icon" src="img/logo%20nutech.png"/>
+
+                <p data-link="http://www.nu.nl/rss/games" data-titel="Nu - Games" data-image="">Nu - Games</p>
+
+                <div class="state"></div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
 </html>

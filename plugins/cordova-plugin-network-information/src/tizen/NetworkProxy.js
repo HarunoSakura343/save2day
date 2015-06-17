@@ -17,13 +17,13 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 var cordova = require('cordova');
 var Connection = require('./Connection');
 
 module.exports = {
-    getConnectionInfo: function(successCallback, errorCallback) {
+    getConnectionInfo: function (successCallback, errorCallback) {
         var cncType = Connection.NONE;
         var infoCount = 0;
         var deviceCapabilities = null;
@@ -55,7 +55,7 @@ module.exports = {
         }
 
         function wifiSuccessCB(wifi) {
-            if ((wifi.status === "ON")  && (wifi.ipAddress.length !== 0)) {
+            if ((wifi.status === "ON") && (wifi.ipAddress.length !== 0)) {
                 cncType = Connection.WIFI;
             }
             connectionCB();
@@ -72,7 +72,7 @@ module.exports = {
         deviceCapabilities = tizen.systeminfo.getCapabilities();
 
 
-        timerId = setTimeout(function() {
+        timerId = setTimeout(function () {
             timerId = null;
             infoCount = 1;
             connectionCB();

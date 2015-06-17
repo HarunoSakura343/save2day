@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 /*global module, require*/
 
@@ -37,7 +37,7 @@ function NetworkConnection() {
  *
  * @param {Function} successCallback The function to call when the Connection data is available
  */
-NetworkConnection.prototype.getInfo = function(successCallback) {
+NetworkConnection.prototype.getInfo = function (successCallback) {
     successCallback(this.type);
 };
 
@@ -65,7 +65,7 @@ var eventRedirectHandler = function (e) {
 
     // Flag that indicates whether corresponding document even is fired
     var documentStateEventFired = false;
-    var setDocumentStateEventFired = function() {
+    var setDocumentStateEventFired = function () {
         documentStateEventFired = true;
     };
     document.addEventListener(e.type, setDocumentStateEventFired);
@@ -87,6 +87,6 @@ window.addEventListener('offline', eventRedirectHandler);
 
 var me = new NetworkConnection();
 
-require("cordova/exec/proxy").add("NetworkStatus", { getConnectionInfo: me.getConnectionInfo });
+require("cordova/exec/proxy").add("NetworkStatus", {getConnectionInfo: me.getConnectionInfo});
 
 module.exports = me;

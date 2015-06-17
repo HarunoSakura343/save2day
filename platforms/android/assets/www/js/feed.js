@@ -133,11 +133,17 @@ Feed.searchByUrl = function (url) {
 };
 
 var onShake = function () {
-    navigator.notification.alert(checkConnection(), function () {
-    }, 'Shake it');
+   if(checkConnection() != 'WiFi connection'){
+       navigator.notification.alert('kan niet updaten omdat 4g niet aanstaat', function () {
+       }, 'Error');
+   }else{
+       navigator.notification.alert('feed geupdate', function () {
+       }, 'success');
+
+   }
 
 };
-
+// check de connectie
 function checkConnection() {
     var networkState = navigator.connection.type;
 
@@ -185,43 +191,54 @@ function checkConnection() {
 
 function storeFeed(Feedlink, Feednaam) {
 
-    var entriesToShow = 2;
-var rssFeedsArray = [],
-    insidefeedsArray = false;
+
+    var entriesToShow = 25;
+    var rssFeedsArray = [],
+        insidefeedsArray = false;
 
     $.ajax({
-        url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=' + entriesToShow + '&q=' + encodeURI(Feedlink),
+            url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=' + entriesToShow + '&q=' + encodeURI(Feedlink),
         dataType: 'json',
         success: function (data) {
-        //   console.log(JSON.stringify(data));
-            if(localStorage.getItem('rssFeeds') === null){
+            //   console.log(JSON.stringify(data));
+            if (localStorage.getItem('rssFeeds') === null) {
                 localStorage.setItem('rssFeeds', JSON.stringify(rssFeedsArray));
             }
-console.log(Feedlink);
+            //     console.log(Feedlink);
             rssFeedsArray = JSON.parse(localStorage.getItem('rssFeeds'));
 
             for (var i in rssFeedsArray) {
-                console.log(JSON.stringify(rssFeedsArray[i].responseData.feed.feedUrl));
+
                 if (rssFeedsArray[i].responseData.feed.feedUrl == Feedlink) {
                     rssFeedsArray[i] = data;
+                 //   console.log(JSON.stringify(data));
                     insidefeedsArray = true;
                 }
             }
 
             if (!insidefeedsArray) {
                 rssFeedsArray.push(data);
-                console.log(JSON.stringify(data));
-                console.log(JSON.stringify(data.responseData.feed.feedUrl));
-                console.log(JSON.stringify((rssFeedsArray)));
             }
             localStorage.setItem('rssFeeds', JSON.stringify(rssFeedsArray));
-           console.log(localStorage.getItem('rssFeeds'));
+         //      console.log(localStorage.getItem('rssFeeds'));
         }
     });
-}
-function retrieveFeed(Feednaam){
 
-   //console.log(JSON.stringify(JSON.parse(localStorage.getItem('rssFeeds'))));
+}
+function retrieveFeed(Feedlink) {
+    var found;
+   // console.log(Feedlink);
+    var checkFeeds = JSON.parse(localStorage.getItem('rssFeeds'));
+  //   console.log(JSON.stringify(checkFeeds));
+    for (var i in checkFeeds) {
+        //   console.log(JSON.stringify(checkFeeds[i].responseData.feed.feedUrl));
+        if (checkFeeds[i].responseData.feed.feedUrl == Feedlink) {
+            found = checkFeeds[i];
+       //     console.log(JSON.stringify(found));
+            return found;
+        }
+    }
+//console.log(JSON.stringify(JSON.parse(localStorage.getItem('rssFeeds'))));
 
 }
 function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
@@ -246,7 +263,7 @@ function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
         feedarray.push(feedObj);
     }
     localStorage.setItem('feeds', JSON.stringify(feedarray));
-    console.log(JSON.stringify(JSON.parse(localStorage.getItem('feeds'))));
+    // console.log(JSON.stringify(JSON.parse(localStorage.getItem('feeds'))));
 }
 //function storeFeed(Feednaam, Feedlink) {
 //

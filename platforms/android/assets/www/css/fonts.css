@@ -1,16 +1,16 @@
 @charset "utf-8";
 /* CSS Document */
 
+@font-face {
+    font-family: 'Roboto-Regular';
+
+    src: url('Roboto-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+
+}
 
 @font-face {
-  font-family: 'Roboto-Regular';
- 
-  src:url('Roboto-Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
-    
-}
-@font-face {
-  font-family: 'Roboto-Medium';
- 
-  src:url('Roboto-Medium.ttf')  format('truetype'); /* Safari, Android, iOS */
-    
+    font-family: 'Roboto-Medium';
+
+    src: url('Roboto-Medium.ttf') format('truetype'); /* Safari, Android, iOS */
+
 }

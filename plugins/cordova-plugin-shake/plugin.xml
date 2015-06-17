@@ -5,10 +5,10 @@
     <description>Cordova Plugin to detect when a physical device performs a shake gesture.</description>
     <keywords>cordova, shake, gesture, accelerometer, acceleration, detection</keywords>
     <engines>
-        <engine name="cordova" version=">=3.0.0" />
+        <engine name="cordova" version=">=3.0.0"/>
     </engines>
     <js-module src="www/shake.js" name="Shake">
-        <clobbers target="shake" />
+        <clobbers target="shake"/>
     </js-module>
-    <dependency id="org.apache.cordova.device-motion" version=">=0.2.0" />
+    <dependency id="org.apache.cordova.device-motion" version=">=0.2.0"/>
 </plugin>

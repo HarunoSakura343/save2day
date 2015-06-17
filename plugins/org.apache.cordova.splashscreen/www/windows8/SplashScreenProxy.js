@@ -17,7 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 /*jslint sloppy:true */
 /*global Windows:true, require, module, window, document, WinJS */
@@ -26,14 +26,13 @@ var cordova = require('cordova'),
     channel = require('cordova/channel');
 
 /* This is the actual implementation part that returns the result on Windows 8
-*/
+ */
 
-var position = { x: 0, y: 0, width: 0, height: 0 };  // defined by evt.detail.splashScreen.imageLocation
+var position = {x: 0, y: 0, width: 0, height: 0};  // defined by evt.detail.splashScreen.imageLocation
 var splash = null; //
 var localSplash; // the image to display
 var localSplashImage;
 var bgColor = "#464646";
-
 
 
 function updateImageLocation() {
@@ -92,8 +91,6 @@ function activated(evt) {
         position = evt.detail.splashScreen.imageLocation;
     }
 }
-
-
 
 
 channel.onCordovaReady.subscribe(function (evt) {

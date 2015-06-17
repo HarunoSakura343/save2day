@@ -17,9 +17,9 @@ cordova.define("org.apache.cordova.device-motion.Acceleration", function(require
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
-var Acceleration = function(x, y, z, timestamp) {
+var Acceleration = function (x, y, z, timestamp) {
     this.x = x;
     this.y = y;
     this.z = z;

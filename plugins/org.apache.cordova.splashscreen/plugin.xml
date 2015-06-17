@@ -19,8 +19,8 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-           id="org.apache.cordova.splashscreen"
-      version="1.0.0">
+        id="org.apache.cordova.splashscreen"
+        version="1.0.0">
     <name>Splashscreen</name>
     <description>Cordova Splashscreen Plugin</description>
     <license>Apache 2.0</license>
@@ -29,11 +29,12 @@
     <issue>https://issues.apache.org/jira/browse/CB/component/12320653</issue>
 
     <engines>
-        <engine name="cordova-android" version=">=3.6.0" /><!-- Requires CordovaPlugin.preferences -->
+        <engine name="cordova-android" version=">=3.6.0"/>
+        <!-- Requires CordovaPlugin.preferences -->
     </engines>
 
     <js-module src="www/splashscreen.js" name="SplashScreen">
-        <clobbers target="navigator.splashscreen" />
+        <clobbers target="navigator.splashscreen"/>
     </js-module>
 
     <!-- android -->
@@ -45,44 +46,44 @@
             </feature>
         </config-file>
 
-        <source-file src="src/android/SplashScreen.java" target-dir="src/org/apache/cordova/splashscreen" />
+        <source-file src="src/android/SplashScreen.java" target-dir="src/org/apache/cordova/splashscreen"/>
     </platform>
 
     <!-- amazon-fireos -->
     <platform name="amazon-fireos">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="SplashScreen">
-            <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen"/>
+                <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/SplashScreen.java" target-dir="src/org/apache/cordova/splashscreen" />
+        <source-file src="src/android/SplashScreen.java" target-dir="src/org/apache/cordova/splashscreen"/>
     </platform>
-    
+
     <!-- ubuntu -->
     <platform name="ubuntu">
-        <header-file src="src/ubuntu/splashscreen.h" />
-        <source-file src="src/ubuntu/splashscreen.cpp" />
+        <header-file src="src/ubuntu/splashscreen.h"/>
+        <source-file src="src/ubuntu/splashscreen.cpp"/>
     </platform>
 
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-		    <feature name="SplashScreen">
-			    <param name="ios-package" value="CDVSplashScreen"/>
-			    <param name="onload" value="true"/>
-		    </feature>
+            <feature name="SplashScreen">
+                <param name="ios-package" value="CDVSplashScreen"/>
+                <param name="onload" value="true"/>
+            </feature>
         </config-file>
 
-	    <header-file src="src/ios/CDVSplashScreen.h" />
-	    <source-file src="src/ios/CDVSplashScreen.m" />
+        <header-file src="src/ios/CDVSplashScreen.h"/>
+        <source-file src="src/ios/CDVSplashScreen.m"/>
 
-	    <framework src="CoreGraphics.framework" />
+        <framework src="CoreGraphics.framework"/>
     </platform>
 
     <!-- blackberry10 -->
     <platform name="blackberry10">
-        <source-file src="src/blackberry10/index.js" target-dir="SplashScreen" />
+        <source-file src="src/blackberry10/index.js" target-dir="SplashScreen"/>
         <config-file target="www/config.xml" parent="/widget">
             <feature name="SplashScreen" value="SplashScreen"/>
         </config-file>
@@ -97,7 +98,7 @@
             </feature>
         </config-file>
 
-        <source-file src="src/wp/SplashScreen.cs" />
+        <source-file src="src/wp/SplashScreen.cs"/>
 
     </platform>
 
@@ -110,21 +111,21 @@
             </feature>
         </config-file>
 
-        <source-file src="src/wp/SplashScreen.cs" />
+        <source-file src="src/wp/SplashScreen.cs"/>
 
     </platform>
 
     <!-- windows8 -->
     <platform name="windows8">
         <js-module src="www/windows8/SplashScreenProxy.js" name="SplashScreenProxy">
-            <merges target="" />
+            <merges target=""/>
         </js-module>
     </platform>
 
     <!-- tizen -->
     <platform name="tizen">
         <js-module src="src/tizen/SplashScreenProxy.js" name="SplashScreenProxy">
-            <runs />
+            <runs/>
         </js-module>
     </platform>
 </plugin>

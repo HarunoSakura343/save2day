@@ -1,52 +1,52 @@
 {
-    "cordova-plugin-whitelist": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-whitelist@1"
-        },
-        "is_top_level": true,
-        "variables": {}
+  "cordova-plugin-whitelist": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-whitelist@1"
     },
-    "cordova-plugin-network-information": {
-        "source": {
-            "type": "git",
-            "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git",
-            "subdir": "."
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-network-information": {
+    "source": {
+      "type": "git",
+      "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git",
+      "subdir": "."
     },
-    "cordova-plugin-dialogs": {
-        "source": {
-            "type": "git",
-            "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-dialogs.git",
-            "subdir": "."
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-dialogs": {
+    "source": {
+      "type": "git",
+      "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-dialogs.git",
+      "subdir": "."
     },
-    "cordova-plugin-shake": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-shake"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-shake": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-shake"
     },
-    "org.apache.cordova.device-motion": {
-        "source": {
-            "type": "registry",
-            "id": "org.apache.cordova.device-motion"
-        },
-        "is_top_level": false,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "org.apache.cordova.device-motion": {
+    "source": {
+      "type": "registry",
+      "id": "org.apache.cordova.device-motion"
     },
-    "org.apache.cordova.splashscreen": {
-        "source": {
-            "type": "registry",
-            "id": "org.apache.cordova.splashscreen"
-        },
-        "is_top_level": true,
-        "variables": {}
-    }
+    "is_top_level": false,
+    "variables": {}
+  },
+  "org.apache.cordova.splashscreen": {
+    "source": {
+      "type": "registry",
+      "id": "org.apache.cordova.splashscreen"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
 }

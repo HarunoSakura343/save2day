@@ -38,7 +38,7 @@
     <allow-intent href="market:*" />
     <name>Save2Day</name>
     <description>
-       Save2Day is een app die rss feeds lokaal opslaat zodat deze offline gelezen kunnen worden
+        Save2Day is een app die rss feeds lokaal opslaat zodat deze offline gelezen kunnen worden
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         Save2Day Team
