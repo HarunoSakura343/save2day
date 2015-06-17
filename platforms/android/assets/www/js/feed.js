@@ -135,10 +135,9 @@ function timeSince(date) {
     return Math.floor(seconds) + " seconde geleden";
 }
 var onShake = function () {
-    //if(checkConnection() != 'WiFi connection'){
     var Feedlink = localStorage.getItem('feedopen');
     if (checkConnection() == 'WiFi connection') {
-        storeFeed(Feedlink)
+        storeFeed(Feedlink);
         navigator.notification.alert('feed has been updated', function () {
         }, 'Success');
 
@@ -146,13 +145,14 @@ var onShake = function () {
         navigator.notification.alert('turn of WiFi to update the feed', function () {
         }, 'Error');
     }
+}
     //    navigator.notification.alert('enable WiFi in order to be able to update the feed', function () {
     //    }, 'Error');
     //}else{
     //
     //    navigator.notification.alert('feed updated', function () {
     //    }, 'success');
-}
+
 // check de connectie
 function checkConnection() {
     var networkState = navigator.connection.type;
