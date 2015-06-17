@@ -107,8 +107,6 @@ Feed.searchByUrl = function (url) {
 };
 
 
-
-
 function timeSince(date) {
     var datex = new Date(date);
     var seconds = Math.floor((new Date() - datex) / 1000);
@@ -136,18 +134,25 @@ function timeSince(date) {
     }
     return Math.floor(seconds) + " seconde geleden";
 }
-var onShake = function (Feedlink) {
-   if(checkConnection() != 'WiFi connection'){
-       navigator.notification.alert('kan niet updaten omdat 4g niet aanstaat', function () {
-       }, 'Error');
-   }else{
-       storeFeed(Feedlink)
-       navigator.notification.alert('feed geupdate', function () {
-       }, 'success');
+var onShake = function () {
+    var Feedlink = localStorage.getItem('feedopen');
+    if (checkConnection() == 'WiFi connection') {
+        storeFeed(Feedlink);
+        navigator.notification.alert('feed has been updated', function () {
+        }, 'Success');
 
-   }
+    } else {
+        navigator.notification.alert('turn of WiFi to update the feed', function () {
+        }, 'Error');
+    }
+}
+    //    navigator.notification.alert('enable WiFi in order to be able to update the feed', function () {
+    //    }, 'Error');
+    //}else{
+    //
+    //    navigator.notification.alert('feed updated', function () {
+    //    }, 'success');
 
-};
 // check de connectie
 function checkConnection() {
     var networkState = navigator.connection.type;
@@ -202,7 +207,7 @@ function storeFeed(Feedlink) {
         insidefeedsArray = false;
 
     $.ajax({
-            url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=' + entriesToShow + '&q=' + encodeURI(Feedlink),
+        url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=' + entriesToShow + '&q=' + encodeURI(Feedlink),
         dataType: 'json',
         success: function (data) {
             //   console.log(JSON.stringify(data));
@@ -216,7 +221,7 @@ function storeFeed(Feedlink) {
 
                 if (rssFeedsArray[i].responseData.feed.feedUrl == Feedlink) {
                     rssFeedsArray[i] = data;
-                 //   console.log(JSON.stringify(data));
+                    //   console.log(JSON.stringify(data));
                     insidefeedsArray = true;
                 }
             }
@@ -225,21 +230,21 @@ function storeFeed(Feedlink) {
                 rssFeedsArray.push(data);
             }
             localStorage.setItem('rssFeeds', JSON.stringify(rssFeedsArray));
-         //      console.log(localStorage.getItem('rssFeeds'));
+            //      console.log(localStorage.getItem('rssFeeds'));
         }
     });
 
 }
 function retrieveFeed(Feedlink) {
     var found;
-   // console.log(Feedlink);
+    // console.log(Feedlink);
     var checkFeeds = JSON.parse(localStorage.getItem('rssFeeds'));
-  //   console.log(JSON.stringify(checkFeeds));
+    //   console.log(JSON.stringify(checkFeeds));
     for (var i in checkFeeds) {
         //   console.log(JSON.stringify(checkFeeds[i].responseData.feed.feedUrl));
         if (checkFeeds[i].responseData.feed.feedUrl == Feedlink) {
             found = checkFeeds[i];
-       //     console.log(JSON.stringify(found));
+            //     console.log(JSON.stringify(found));
             return found;
         }
     }

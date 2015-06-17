@@ -4,6 +4,15 @@ var Application = {
             .on('pageinit', '#add-feed-page', function () {
                 Application.initAddFeedPage();
             })
+            .on('pageinit', '#slide-one-page', function () {
+                Application.initSlideOnePage();
+            })
+            .on('pageinit', '#slide-two-page', function () {
+                Application.initSlideTwoPage();
+            })
+            .on('pageinit', '#slide-three-page', function () {
+                Application.initSlideThreePage();
+            })
             .on('pageinit', '#list-feeds-page', function () {
                 Application.initListFeedPage();
             })
@@ -27,15 +36,15 @@ var Application = {
                 Application.initTestShow(url);
             });
 
-        if(!localStorage.getItem('feeds')){
-
+        if(!localStorage.getItem('did_intro')){
+            $.mobile.changePage('slide-one.html');
         }
         $('li p').click(function () {
             var Feednaam = $(this).data("titel");
             var Feedlink = $(this).data("link");
             var image = $(this).data("image");
             //    console.log(checkConnection());
-
+            shake.startWatch(onShake, 30);
             if (checkConnection() != 'WiFi connection') {
                 navigator.notification.alert('enable WiFi in order to be able to get the RSS Feed' + checkConnection(), function () {
                 }, 'Error');
@@ -47,7 +56,7 @@ var Application = {
                 localStorage.setItem('feedopen', Feedlink);
                 var showfeed = retrieveFeed(Feedlink);
                 //    console.log(JSON.stringify(showfeed));
-                $.mobile.changePage('show-rss.html');
+
             }
 
 
@@ -55,7 +64,7 @@ var Application = {
                 navigator.notification.alert('No RSS Feed Saved because there has not been a connection since it was pressed' + checkConnection(), function () {
                 }, 'Error');
             } else {
-
+                $.mobile.changePage('show-rss.html');
             }
 
 
@@ -63,17 +72,16 @@ var Application = {
         Application.openLinksInApp();
     },
     initShowRSSPage: function () {
+
         var Feedlink = localStorage.getItem('feedopen');
-        //   console.log(Feedlink);
         var showfeed = retrieveFeed(Feedlink);
         //    console.log(JSON.stringify(showfeed));
-
         var entriesToShow = 0;
-        shake.startWatch(onShake(Feedlink), 20 /*, onError */);
         var items = showfeed.responseData.feed.entries;
         $('.show-rss-container').empty();
         var container = $('.show-rss-container');
 
+        shake.startWatch(onShake, 30);
         for (var i = entriesToShow; i < items.length; i++) {
 
             var toAppend = $('<div class="rssfeedrow">');
@@ -83,13 +91,10 @@ var Application = {
                 .append($('<p class="author">').text('author: ' + items[i].author))
                 .append($('<p class="time">').text(timeSince(items[i].publishedDate)))
                 .append($('<hr class="line">'));
-
-
             container.append(toAppend);
+
             //    console.log(JSON.stringify(itemskey[keyi].title));
             //      $('.show-rss-container').append('<div class="rssfeedrow"></div>');
-
-
             //$('.rssfeedrow').append('<h2 class="titleh2">'+(keyi)+'</h2>');
             //$('.rssfeedrow').append('<h2 class="titleh2">'+(itemskey[keyi].title)+'</h2>');
             //$('.rssfeedrow').append('<p class="text">'+(itemskey[keyi].content)+'</p>');
@@ -102,10 +107,17 @@ var Application = {
             //    .append($('<p class="author">').text('auteur: ' + items[i].author))
             //    .append($('<p class="time">').text(timeSince(items[i].publishedDate)))
             //    .append($('<hr class="line">'));
-
-
         }
 
+
+    },
+    initSlideOnePage: function () {
+
+    },
+    initSlideTwoPage: function () {
+
+    },
+    initSlideThreePage: function () {
 
     },
     initAddFeedPage: function () {
