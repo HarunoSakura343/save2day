@@ -20,6 +20,9 @@ var Application = {
                 var url = this.getAttribute('data-url').replace(/(.*?)url=/g, '');
                 Application.initShowFeedPage(url);
             })
+            .on('pageinit', '#feed-overview-page', function () {
+                Application.initFeedOverviewPage();
+            })
             .on('pageinit', '#show-rss-page', function () {
                 //   var link = this.getAttribute('data-url').replace(/(.*?)link=/g, '');
                 Application.initShowRSSPage();
@@ -70,6 +73,15 @@ var Application = {
 
         });
         Application.openLinksInApp();
+    },
+    initFeedOverviewPage: function (){
+
+        var check = retrieveFollowing();
+        if (check == 'no feeds saved yet'){
+
+        }else{
+
+        }
     },
     initShowRSSPage: function () {
 
