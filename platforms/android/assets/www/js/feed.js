@@ -114,25 +114,25 @@ function timeSince(date) {
     var interval = Math.floor(seconds / 31536000);
 
     if (interval > 0) {
-        return interval + " jaar geleden";
+        return interval + " years ago";
     }
     interval = Math.floor(seconds / 2592000);
     if (interval > 0) {
-        return interval + " maanden geleden";
+        return interval + " months ago";
     }
     interval = Math.floor(seconds / 86400);
     if (interval > 0) {
-        return interval + " dagen geleden";
+        return interval + " days ago";
     }
     interval = Math.floor(seconds / 3600);
     if (interval > 0) {
-        return interval + " uur geleden";
+        return interval + " hours ago";
     }
     interval = Math.floor(seconds / 60);
     if (interval > 0) {
-        return interval + " minuten geleden";
+        return interval + " minutes ago";
     }
-    return Math.floor(seconds) + " seconde geleden";
+    return Math.floor(seconds) + " seconds ago";
 }
 var onShake = function () {
     var Feedlink = localStorage.getItem('feedopen');
@@ -142,7 +142,7 @@ var onShake = function () {
         }, 'Success');
 
     } else {
-        navigator.notification.alert('turn of WiFi to update the feed', function () {
+        navigator.notification.alert('turn on WiFi to update the feed', function () {
         }, 'Error');
     }
 }
@@ -153,7 +153,8 @@ var onShake = function () {
     //    navigator.notification.alert('feed updated', function () {
     //    }, 'success');
 
-// check de connectie
+// check the type of connection
+
 function checkConnection() {
     var networkState = navigator.connection.type;
 
@@ -199,24 +200,27 @@ function checkConnection() {
 //}
 
 
+// get the rss feed thats linked to the Feedlink that has been pressed and set it in the localStorage
 function storeFeed(Feedlink) {
 
 
-    var entriesToShow = 25;
-    var rssFeedsArray = [],
-        insidefeedsArray = false;
+    var entriesToShow = 25; // Currently the hardcoded limit of the amount of entries that are retrieved from the rss feed
+    var rssFeedsArray = [],  // the array where the rss feed wil be stored
+        insidefeedsArray = false; // set a variable to determine if the feed is already in the localStorage or not
 
     $.ajax({
         url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=' + entriesToShow + '&q=' + encodeURI(Feedlink),
         dataType: 'json',
         success: function (data) {
             //   console.log(JSON.stringify(data));
-            if (localStorage.getItem('rssFeeds') === null) {
+            if (localStorage.getItem('rssFeeds') === null) { // check if the rssFeed variable already exists in the localStorage, if not, set it with the data retrieved from the rss feed
                 localStorage.setItem('rssFeeds', JSON.stringify(rssFeedsArray));
             }
             //     console.log(Feedlink);
-            rssFeedsArray = JSON.parse(localStorage.getItem('rssFeeds'));
+            rssFeedsArray = JSON.parse(localStorage.getItem('rssFeeds')); // retrieve the variable from the localStorage that contains all the rss feeds
 
+
+            // check if the rss feed retrieved from the ajax call already exists in the localStorage, if it does, overwrite it
             for (var i in rssFeedsArray) {
 
                 if (rssFeedsArray[i].responseData.feed.feedUrl == Feedlink) {
@@ -225,7 +229,7 @@ function storeFeed(Feedlink) {
                     insidefeedsArray = true;
                 }
             }
-
+            // if the retrieved rss feed from the ajaxcall does not yet exists in the localStorage, then add the retrieved rss feed to the localStorage
             if (!insidefeedsArray) {
                 rssFeedsArray.push(data);
             }
@@ -235,6 +239,8 @@ function storeFeed(Feedlink) {
     });
 
 }
+
+// get the rss feed that has been selected (determmined by the Feedlink) and return in so it can be shown
 function retrieveFeed(Feedlink) {
     var found;
     // console.log(Feedlink);
@@ -249,8 +255,21 @@ function retrieveFeed(Feedlink) {
         }
     }
 //console.log(JSON.stringify(JSON.parse(localStorage.getItem('rssFeeds'))));
+}
+
+// get the data of the currently followed feeds to be able to show it in the feed overview page
+function retrieveFollowing(){
+    if(localStorage.getItem('feeds') !== null){
+        var following = JSON.parse(localStorage.getItem('feeds'));
+        return following;
+    }else{
+        return 'no feeds saved yet';
+    }
 
 }
+
+
+// get the feeddata that has been added by pressing it on the search feed page
 function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
     var feedObj = {Feednaam: Feednaam, Feedlink: Feedlink, Feedimage: Feedimage},
         feedarray = [],

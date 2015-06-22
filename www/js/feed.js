@@ -114,25 +114,25 @@ function timeSince(date) {
     var interval = Math.floor(seconds / 31536000);
 
     if (interval > 0) {
-        return interval + " jaar geleden";
+        return interval + " years ago";
     }
     interval = Math.floor(seconds / 2592000);
     if (interval > 0) {
-        return interval + " maanden geleden";
+        return interval + " months ago";
     }
     interval = Math.floor(seconds / 86400);
     if (interval > 0) {
-        return interval + " dagen geleden";
+        return interval + " days ago";
     }
     interval = Math.floor(seconds / 3600);
     if (interval > 0) {
-        return interval + " uur geleden";
+        return interval + " hours ago";
     }
     interval = Math.floor(seconds / 60);
     if (interval > 0) {
-        return interval + " minuten geleden";
+        return interval + " minutes ago";
     }
-    return Math.floor(seconds) + " seconde geleden";
+    return Math.floor(seconds) + " seconds ago";
 }
 var onShake = function () {
     var Feedlink = localStorage.getItem('feedopen');
@@ -142,18 +142,19 @@ var onShake = function () {
         }, 'Success');
 
     } else {
-        navigator.notification.alert('turn of WiFi to update the feed', function () {
+        navigator.notification.alert('turn on WiFi to update the feed', function () {
         }, 'Error');
     }
 }
-    //    navigator.notification.alert('enable WiFi in order to be able to update the feed', function () {
-    //    }, 'Error');
-    //}else{
-    //
-    //    navigator.notification.alert('feed updated', function () {
-    //    }, 'success');
+//    navigator.notification.alert('enable WiFi in order to be able to update the feed', function () {
+//    }, 'Error');
+//}else{
+//
+//    navigator.notification.alert('feed updated', function () {
+//    }, 'success');
 
-// check de connectie
+// check the type of connection
+
 function checkConnection() {
     var networkState = navigator.connection.type;
 
@@ -254,15 +255,14 @@ function retrieveFeed(Feedlink) {
         }
     }
 //console.log(JSON.stringify(JSON.parse(localStorage.getItem('rssFeeds'))));
-
 }
 
 // get the data of the currently followed feeds to be able to show it in the feed overview page
-function retrieveFollowing(){
-    if(localStorage.getItem('feeds') !== null){
+function retrieveFollowing() {
+    if (localStorage.getItem('feeds') !== null) {
         var following = JSON.parse(localStorage.getItem('feeds'));
         return following;
-    }else{
+    } else {
         return 'no feeds saved yet';
     }
 
@@ -270,30 +270,30 @@ function retrieveFollowing(){
 
 
 // get the feeddata that has been added by pressing it on the search feed page
-function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
-    var feedObj = {Feednaam: Feednaam, Feedlink: Feedlink, Feedimage: Feedimage},
-        feedarray = [],
-        inside = false;
+    function FeedToevoegen(Feednaam, Feedlink, Feedimage) {
+        var feedObj = {Feednaam: Feednaam, Feedlink: Feedlink, Feedimage: Feedimage},
+            feedarray = [],
+            inside = false;
 
-    if (localStorage.getItem('feeds') === null) {
-        localStorage.setItem('feeds', JSON.stringify(feedarray));
-    }
-
-    feedarray = JSON.parse(localStorage.getItem('feeds'));
-
-    for (var i in feedarray) {
-        if (feedarray[i].Feednaam == feedObj.Feednaam) {
-            feedarray[i] = feedObj;
-            inside = true;
+        if (localStorage.getItem('feeds') === null) {
+            localStorage.setItem('feeds', JSON.stringify(feedarray));
         }
-    }
 
-    if (!inside) {
-        feedarray.push(feedObj);
+        feedarray = JSON.parse(localStorage.getItem('feeds'));
+
+        for (var i in feedarray) {
+            if (feedarray[i].Feednaam == feedObj.Feednaam) {
+                feedarray[i] = feedObj;
+                inside = true;
+            }
+        }
+
+        if (!inside) {
+            feedarray.push(feedObj);
+        }
+        localStorage.setItem('feeds', JSON.stringify(feedarray));
+        // console.log(JSON.stringify(JSON.parse(localStorage.getItem('feeds'))));
     }
-    localStorage.setItem('feeds', JSON.stringify(feedarray));
-    // console.log(JSON.stringify(JSON.parse(localStorage.getItem('feeds'))));
-}
 //function storeFeed(Feednaam, Feedlink) {
 //
 //    var limit = 25;

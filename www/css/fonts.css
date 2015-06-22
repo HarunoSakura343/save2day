@@ -4,13 +4,13 @@
 @font-face {
     font-family: 'Roboto-Regular';
 
-    src: url('Roboto-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
 
 }
 
 @font-face {
     font-family: 'Roboto-Medium';
 
-    src: url('Roboto-Medium.ttf') format('truetype'); /* Safari, Android, iOS */
+    src: url('../fonts/Roboto-Medium.ttf') format('truetype'); /* Safari, Android, iOS */
 
 }

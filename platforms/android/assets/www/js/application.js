@@ -20,6 +20,9 @@ var Application = {
                 var url = this.getAttribute('data-url').replace(/(.*?)url=/g, '');
                 Application.initShowFeedPage(url);
             })
+            .on('pageinit', '#feed-overview-page', function () {
+                Application.initFeedOverviewPage();
+            })
             .on('pageinit', '#show-rss-page', function () {
                 //   var link = this.getAttribute('data-url').replace(/(.*?)link=/g, '');
                 Application.initShowRSSPage();
@@ -36,8 +39,9 @@ var Application = {
                 Application.initTestShow(url);
             });
 
-        if(!localStorage.getItem('did_intro')){
+        if (!localStorage.getItem('did_intro')) {
             $.mobile.changePage('slide-one.html');
+            localStorage.setItem('did_intro', true);
         }
         $('li p').click(function () {
             var Feednaam = $(this).data("titel");
@@ -55,6 +59,7 @@ var Application = {
                 storeFeed(Feedlink, Feednaam);
                 localStorage.setItem('feedopen', Feedlink);
                 var showfeed = retrieveFeed(Feedlink);
+
                 //    console.log(JSON.stringify(showfeed));
 
             }
@@ -70,6 +75,47 @@ var Application = {
 
         });
         Application.openLinksInApp();
+    },
+    initFeedOverviewPage: function () {
+
+        var check = retrieveFollowing();
+        if (check == 'no feeds saved yet') {
+            var container = $('.feed-overview-container');
+            container.append('<p>').text('no feeds saved yet');
+        } else {
+            //  var container = $('.show-rss-container');
+            console.log(JSON.stringify(check));
+            var container = $('.feed-overview-container');
+            for (var i = 0; i < check.length; i++) {
+
+                var toAppend = $('<div class="rssfeedrow">');
+                toAppend
+                    .append($('<img class="source-icon" src="' + check[i].Feedimage + '" />'))
+
+                    // <p data-link="http://www.nu.nl/rss/games" data-titel="Nu - Games" data-image="img/feed-icons/nu.png">Nu - Games</p>
+                    .append($('<p class="text" data-link="' + check[i].Feedlink + '" data-titel="' + check[i].Feednaam + '" data-image"' + check[i].Feedimage + '">').text(check[i].Feednaam))
+                    .append($('<div class="clear"/>'))
+                    .append($('<hr class="line">'))
+                    .append($('<div class="clear"/>'));
+                // Add description
+                //  .append($('<p class="author">').text('author: ' + items[i].author))
+                //  .append($('<p class="time">').text(timeSince(items[i].publishedDate)))
+                //.append($('<hr class="line">'));
+                container.append(toAppend);
+
+
+            }
+        }
+
+        $('.rssfeedrow p').click(function () {
+
+
+            var Feedlink = $(this).data("link");
+            localStorage.setItem('feedopen', Feedlink);
+            $.mobile.changePage('show-rss.html');
+        });
+
+
     },
     initShowRSSPage: function () {
 
